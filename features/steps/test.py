@@ -36,3 +36,39 @@ def step_impl(context):
 def step_impl(context, url):
 
     assert url == context.driver.current_url
+
+
+@step('I fill the field title "{title}"')
+def step_impl(context,title):
+    elem = context.driver.find_element_by_id('title')
+    elem.send_keys(title)
+    read = elem.get_attribute('value')
+    assert title == read
+    pass
+
+
+@step('I fill the field addrImage "{addrImage}"')
+def step_impl(context,addrImage):
+    elem = context.driver.find_element_by_id('address')
+    elem.send_keys(addrImage)
+    read = elem.get_attribute('value')
+    assert addrImage == read
+    pass
+
+
+@step('I fill the field code "{code:d}"')
+def step_impl(context,code):
+    elem = context.driver.find_element_by_id('code')
+    elem.send_keys(code)
+    read = elem.get_attribute('value')
+    assert code == read
+    pass
+
+
+@then('I fill the field balance "{balance:d}"')
+def step_impl(context,balance):
+    elem = context.driver.find_element_by_id('balance')
+    elem.send_keys(balance)
+    read = elem.get_attribute('value')
+    assert balance == read
+    pass
