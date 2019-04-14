@@ -10,3 +10,11 @@ Scenario: Run a simple test
     When I visit url "http://127.0.0.1:8000/materials"
     And I click button "add"
     Then I go to the page "http://127.0.0.1:8000/create/"
+
+Scenario: Run a simple test
+    Given I am a visitor
+    When I visit url "http://127.0.0.1:8000/create"
+    And I fill the field title "title"
+    And I fill the field addrImage "addrImage"
+    And I fill the field code "12"
+    Then I fill the field balance "19"
