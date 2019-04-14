@@ -22,3 +22,19 @@ def step_impl(context, url):
 def step_impl(context, materials):
     assert context.myTitle == materials
     pass
+
+
+@step('I click button "add"')
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    pass
+
+
+@then('I go to the page "http://127.0.0.1:8000/create"')
+def step_impl(context):
+    """
+    :type context: behave.runner.Context
+    """
+    pass

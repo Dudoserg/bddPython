@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 
-def base(request ):
+def base(request):
     return render(request, 'seleniumBdd/base.html')
