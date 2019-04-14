@@ -1,5 +1,7 @@
 {% extends "seleniumBdd/product.html" %}
-
+{% block title %}
+    materials
+{% endblock %}
 {% block content%}
     <div id="content-wrapper" class="myColorElem" >
         <div id ="mainDiv" class="bg-white mx-2 ">
@@ -7,7 +9,7 @@
 
 
             <div class="col-sm-12 text-center">
-                    <a id="addBtn" class="btn btn-success my-2" href=""> Добавить </a>
+                    <a id="addBtn" class="btn btn-success my-2" href="{% url 'create' %}"> Добавить </a>
             </div>
         </div>
     </div>

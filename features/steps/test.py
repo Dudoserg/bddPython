@@ -29,7 +29,7 @@ def step_impl(context, materials):
 def step_impl(context):
     btn = context.driver.find_element_by_id("addBtn")
     btn.click()
-
+    print()
 
 
 @then('I go to the page "{url}"')
