@@ -9,6 +9,7 @@ use_step_matcher("parse")
 @given("I am a visitor")
 def step_impl(context):
     context.driver = webdriver.Chrome(executable_path=r'myLib/chromedriver.exe')
+
     pass
 
 @when('I visit url "{url}"')
@@ -21,20 +22,17 @@ def step_impl(context, url):
 @then('I should see title as "{materials}"')
 def step_impl(context, materials):
     assert context.myTitle == materials
-    pass
+
 
 
 @step('I click button "add"')
 def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+    btn = context.driver.find_element_by_id("addBtn")
+    btn.click()
 
 
-@then('I go to the page "http://127.0.0.1:8000/create"')
-def step_impl(context):
-    """
-    :type context: behave.runner.Context
-    """
-    pass
+
+@then('I go to the page "{url}"')
+def step_impl(context, url):
+
+    assert url == context.driver.current_url
