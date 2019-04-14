@@ -59,16 +59,16 @@ def step_impl(context,addrImage):
 @step('I fill the field code "{code:d}"')
 def step_impl(context,code):
     elem = context.driver.find_element_by_id('code')
-    elem.send_keys(code)
+    elem.send_keys(str(code))
     read = elem.get_attribute('value')
-    assert code == read
+    assert str(code) == read
     pass
 
 
 @then('I fill the field balance "{balance:d}"')
 def step_impl(context,balance):
     elem = context.driver.find_element_by_id('balance')
-    elem.send_keys(balance)
+    elem.send_keys(str(balance))
     read = elem.get_attribute('value')
-    assert balance == read
+    assert str(balance) == read
     pass
