@@ -112,3 +112,23 @@ def step_impl(context, dbName, tableName):
     context.id = material.pk
     assert material is not None
     # raise NotImplementedError(u'STEP: Then The record is added to the database "db.sqlite3" in table "material"')
+
+
+@step('I click button "back"')
+def step_impl(context):
+    btn = context.driver.find_element_by_id("backBtn")
+    btn.click()
+    raise NotImplementedError(u'STEP: And I click button "back"')
+
+
+@step('I go to the page "{url}"')
+def step_impl(context, url):
+    assert url == context.driver.current_url
+    # raise NotImplementedError(u'STEP: And I go to the page "http://127.0.0.1:8000/materials/"')
+
+
+@then("I see an entry added")
+def step_impl(context):
+    currentMaterial = context.driver.find_element_by_id(context.id)
+    assert currentMaterial is not None
+    # raise NotImplementedError(u'STEP: Then I see an entry added')
