@@ -28,6 +28,7 @@ Scenario: Run a simple test
     And I fill the field balance "19"
     And I click  button "create"
     Then The record is added to the database "db.sqlite3" in table "material"
+    And delete this material
 
 Scenario: Run a simple test
     Given I am a visitor
@@ -37,6 +38,7 @@ Scenario: Run a simple test
     And I fill the field code "12"
     And I fill the field balance "19"
     And I click  button "create"
-    And I click button "back"
+    Then The record is added to the database "db.sqlite3" in table "material"
     And I go to the page "http://127.0.0.1:8000/materials/"
     Then I see an entry added
+    And delete this material

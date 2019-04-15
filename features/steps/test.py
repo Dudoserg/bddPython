@@ -108,8 +108,9 @@ def step_impl(context):
 @then('The record is added to the database "{dbName}" in table "{tableName}"')
 def step_impl(context, dbName, tableName):
     pass
-    material = Material(title=context.title, code_material=context.code, img=context.addrImage, balance=context.balance)
+    material = Material.objects.filter(title=context.title, code_material=context.code, img=context.addrImage, balance=context.balance)[0]
     context.id = material.pk
+    print("id = " + str(material.id))
     assert material is not None
     # raise NotImplementedError(u'STEP: Then The record is added to the database "db.sqlite3" in table "material"')
 
@@ -118,7 +119,7 @@ def step_impl(context, dbName, tableName):
 def step_impl(context):
     btn = context.driver.find_element_by_id("backBtn")
     btn.click()
-    raise NotImplementedError(u'STEP: And I click button "back"')
+    # raise NotImplementedError(u'STEP: And I click button "back"')
 
 
 @step('I go to the page "{url}"')
@@ -129,6 +130,14 @@ def step_impl(context, url):
 
 @then("I see an entry added")
 def step_impl(context):
-    currentMaterial = context.driver.find_element_by_id(context.id)
+    print(context.id)
+    currentMaterial = context.driver.find_element_by_id(str(context.id))
     assert currentMaterial is not None
     # raise NotImplementedError(u'STEP: Then I see an entry added')
+
+
+@step("delete this material")
+def step_impl(context):
+    material = Material.objects.filter(title=context.title, code_material=context.code, img=context.addrImage, balance=context.balance)[0]
+    material.delete()
+    # raise NotImplementedError(u'STEP: And delete this material')

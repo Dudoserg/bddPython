@@ -7,7 +7,10 @@ from seleniumBdd.models import Material
 @csrf_exempt
 def base(request):
     print("asd")
-    return render(request, 'seleniumBdd/base.html')
+    # print(request.GET['value'])
+    materials = Material.objects.all()
+    # materials.html
+    return render(request, 'seleniumBdd/base.html', {'material': materials})
 
 @csrf_exempt
 def create_material(request):
@@ -24,3 +27,5 @@ def add_in_base(request):
     material = Material(title=title, code_material=code, img=img, balance=balance)
     material.save()
     return HttpResponse("Success!")
+
+
