@@ -1,6 +1,10 @@
 from behave import *
 from selenium import webdriver
 from sys import platform
+
+
+from materials.models import Material
+
 #use_step_matcher("re")
 
 use_step_matcher("parse")
@@ -45,6 +49,7 @@ def step_impl(context, url):
 
 @step('I fill the field title "{title}"')
 def step_impl(context,title):
+    context.title = title
     elem = context.driver.find_element_by_id('title')
     elem.send_keys(title)
     read = elem.get_attribute('value')
@@ -54,6 +59,7 @@ def step_impl(context,title):
 
 @step('I fill the field addrImage "{addrImage}"')
 def step_impl(context,addrImage):
+    context.addrImage = addrImage
     elem = context.driver.find_element_by_id('address')
     elem.send_keys(addrImage)
     read = elem.get_attribute('value')
@@ -63,6 +69,7 @@ def step_impl(context,addrImage):
 
 @step('I fill the field code "{code:d}"')
 def step_impl(context,code):
+    context.code = code
     elem = context.driver.find_element_by_id('code')
     elem.send_keys(str(code))
     read = elem.get_attribute('value')
@@ -77,3 +84,29 @@ def step_impl(context,balance):
     read = elem.get_attribute('value')
     assert str(balance) == read
     pass
+
+
+@step('I fill the field balance "{balance:d}"')
+def step_impl(context,balance):
+    context.balance = balance
+    elem = context.driver.find_element_by_id('balance')
+    elem.send_keys(str(balance))
+    read = elem.get_attribute('value')
+    assert str(balance) == read
+    pass
+
+    # raise NotImplementedError(u'STEP: And I fill the field balance "19"')
+
+
+@step('I click  button "create"')
+def step_impl(context):
+    btn = context.driver.find_element_by_id("createBtn")
+    btn.click()
+    # raise NotImplementedError(u'STEP: And I click  button "create"')
+
+
+@then('The record is added to the database "{dbName}" in table "{tableName}"')
+def step_impl(context, dbName, tableName):
+    material = Material(title=context.title, code_material=context.code, img=context.addrImage, balance=context.balance)
+    assert material is not None
+    # raise NotImplementedError(u'STEP: Then The record is added to the database "db.sqlite3" in table "material"')
