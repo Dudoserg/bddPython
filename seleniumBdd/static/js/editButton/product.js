@@ -107,7 +107,7 @@ function create_material() {
 
     $.ajax({
         type: "POST",
-        url: "/materials/create/new/",
+        url: "/create/new/",
         data: {'title': title, 'code': code, 'balance': balance, 'img': img,},
         // cache: false,
         success: function(html)

@@ -1,9 +1,9 @@
 from behave import *
 from selenium import webdriver
 from sys import platform
-
-
-from materials.models import Material
+import django
+django.setup()
+from seleniumBdd.models import Material
 
 #use_step_matcher("re")
 
@@ -107,6 +107,8 @@ def step_impl(context):
 
 @then('The record is added to the database "{dbName}" in table "{tableName}"')
 def step_impl(context, dbName, tableName):
+    pass
     material = Material(title=context.title, code_material=context.code, img=context.addrImage, balance=context.balance)
+    context.id = material.pk
     assert material is not None
     # raise NotImplementedError(u'STEP: Then The record is added to the database "db.sqlite3" in table "material"')
