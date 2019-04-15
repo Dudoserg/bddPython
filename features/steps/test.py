@@ -1,6 +1,6 @@
 from behave import *
 from selenium import webdriver
-
+from sys import platform
 #use_step_matcher("re")
 
 use_step_matcher("parse")
@@ -8,7 +8,12 @@ use_step_matcher("parse")
 
 @given("I am a visitor")
 def step_impl(context):
-    context.driver = webdriver.Chrome(executable_path=r'myLib/chromedriver.exe')
+    if platform == "linux" or platform == "linux2":
+        context.driver = webdriver.Chrome(executable_path=r'myLib/chromedriver')
+        print("linux")
+    else:
+        context.driver = webdriver.Chrome(executable_path=r'myLib/chromedriver.exe')
+        print("not linux")
 
     pass
 
